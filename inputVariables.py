@@ -18,4 +18,5 @@ class soldier:
 
 tropa1 = soldier(3)
 tropa1.take_wings()
-print(tropa1.flyes)
+tropa1.take_damage(200)
+print(tropa1.health)
