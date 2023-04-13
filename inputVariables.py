@@ -1,0 +1,2 @@
+class soldier:
+    pass
