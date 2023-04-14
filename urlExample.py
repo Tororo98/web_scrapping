@@ -1,15 +1,16 @@
 import urllib.request
+from urllib.request import urlopen
 import os.path
 import json
+import csv
 
-def get_html(url):
-    req = urllib.request.urlopen(url)
-    html = req.read()
-    return html
+req = urlopen('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1M')
 
-if __name__ == '__main__':
-    url = 'https://www.frikidelto.com/wp-content/uploads/2021/08/OFERTAS_DEL_DIA.png'
-    f = open(os.path.basename(url), 'wb')
-    f.write(get_html(url))
-    f.close()
-    print('End of Script')
+datos = json.loads(req.read())
+
+with open('BTCUSDT.csv', 'w', encoding='utf-8') as f:
+    writer = csv.writer(f, lineterminator='\n')
+
+    for fila in datos:
+        print(fila)
+        writer.writerow(fila)
